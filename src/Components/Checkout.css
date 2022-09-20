@@ -1,0 +1,27 @@
+.checkout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.checkout_content{
+    padding: 2rem;
+    font-size: large;
+    font-size: 2rem;
+}
+
+.checkout1{
+    padding: 2rem;
+    font-size: large;
+    font-size: 3rem;
+    padding-left: 2rem;
+}
+
+.checkout_overlay{
+    margin-right: 3rem;
+    margin-left: 3rem;
+    margin-top: 10rem;
+    border-radius: 10px;
+    box-shadow: 1px 1px 20px 6px #ccc;
+}

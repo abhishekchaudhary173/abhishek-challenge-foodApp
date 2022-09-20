@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Hamburger",
+        "price": "200",
+        "image": "./Images/burger.jpeg"
+        
+    },
+    {
+        "name": "Fries",
+        "price": "100",
+        "image": "./Images/fries.jpeg"
+    },
+    {
+        "name": "Coke",
+        "price": "50",
+        "image": "./Images/coke.jpeg"
+    },
+    {
+        "name": "Pepsi",
+        "price": "50",
+        "image": "./Images/pepsi.jpeg"
+    }
+]
