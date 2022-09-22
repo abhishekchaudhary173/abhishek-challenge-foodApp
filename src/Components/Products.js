@@ -1,14 +1,40 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Products.css";
 import { useNavigate } from "react-router-dom";
-import { StateContext } from "../ContextProvider";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import Badge from "@mui/material/Badge";
+import { useStateValue } from "../StateProvider";
 
-const Products = () => {
-  const { data, cart, isModal, setIsModal, setData, setCart } =
-    useContext(StateContext);
+function Products({ name, price }) {
+  const [isModal, setIsModal] = useState(false);
+
+  const [{ basket, data }, dispatch] = useStateValue();
+
+  const setData = (data) => {
+    // Add item to the cart
+    dispatch({
+      type: "ADD_DATA",
+      item: data,
+    });
+  };
+
+  const addToBasket = (item) => {
+    console.log("basket add");
+    // Add item to the cart
+    dispatch({
+      type: "ADD_TO_BASKET",
+      item: item,
+    });
+  };
+
+  const removeFromBasket = (item) => {
+    // remove item from basket..
+    dispatch({
+      type: "REMOVE_FROM_BASKET",
+      item: item,
+    });
+  };
 
   const navigate = useNavigate();
 
@@ -22,7 +48,7 @@ const Products = () => {
     navigate1("/checkout");
   }
 
-  console.log("================= cart =================", cart);
+  // console.log("================= cart =================", basket);
 
   const handleClose = () => {
     setIsModal(false);
@@ -30,40 +56,6 @@ const Products = () => {
 
   const handleTrue = () => {
     setIsModal(true);
-  };
-  const handleplus = (data) => {
-    if (cart.length > 0) {
-      for (let i = 0; i < cart.length; i++) {
-        if (cart[i].name === data.name) {
-          let temp = cart;
-          temp[i] = { ...temp[i], value: temp[i].value + 1 };
-          setCart(temp);
-          return;
-        }
-      }
-      let tempObj = { ...data, value: 1 };
-      setCart([...cart, tempObj]);
-    } else {
-      let tempObj = { ...data, value: 1 };
-      setCart([...cart, tempObj]);
-    }
-  };
-
-  const handleminus = (data) => {
-    if (cart.length > 0) {
-      for (let i = 0; i < cart.length; i++) {
-        if (cart[i].name === data.name) {
-          let temp = cart;
-          temp[i] = { ...temp[i], value: temp[i].value - 1 };
-          setCart(temp);
-          return;
-        }
-      }
-      let tempObj = { ...data, value: 1 };
-      setCart([...cart, tempObj]);
-    } else {
-      alert("Cart is empty");
-    }
   };
 
   const getData = () => {
@@ -73,22 +65,22 @@ const Products = () => {
         return response.json();
       })
       .then(function (myJson) {
-        console.log(myJson);
+        // console.log(myJson);
         setData(myJson);
       });
   };
 
   const totalCost = () => {
     let val = 0;
-    for (let i = 0; i < cart.length; i++) {
-      val += cart[i].value * cart[i].price;
+    for (let i = 0; i < basket.length; i++) {
+      val += basket[i].value * basket[i].price;
     }
     return val;
   };
   const totalItems = () => {
     let val = 0;
-    for (let i = 0; i < cart.length; i++) {
-      val += cart[i].value;
+    for (let i = 0; i < basket.length; i++) {
+      val += basket[i].value;
     }
     return val;
   };
@@ -123,7 +115,7 @@ const Products = () => {
               height: 30,
             }}
           />
-          {cart.length > 0 && (
+          {basket.length > 0 && (
             <Badge
               style={{ marginTop: -40 }}
               badgeContent={totalItems()}
@@ -151,39 +143,49 @@ const Products = () => {
                     }}
                   />
 
-                  <div className="productData__overlayname ">
-                    <div className="productData__name">
-                      <p className="productData__name1">{`${item.name}`}</p>
-                    </div>
-                  </div>
-                  <div className="productData__overlayText ">
-                    <div className="productData__price">
-                      <p className="productData__price1">
-                        {`Price:${item.price}`}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="productData__overlaybtn ">
-                    <div className="productData__btn">
-                      <div>
-                        <button
-                          className="add_btn"
-                          onClick={() => {
-                            handleplus(item);
-                          }}
-                        >
-                          +
-                        </button>
+                  <div style={{ paddingLeft: 15, paddingRight: 15 }}>
+                    <div className="productData__overlayname ">
+                      <div className="productData__name">
+                        <p className="productData__name1">{`${item.name}`}</p>
                       </div>
-                      <div>
-                        <button
-                          className="minus_btn"
-                          onClick={() => {
-                            handleminus(item);
-                          }}
-                        >
-                          -
-                        </button>
+                    </div>
+                    <div className="productData__overlayText ">
+                      <div className="productData__price">
+                        <p className="productData__price1">
+                          {`Price:${item.price}`}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="productData__overlaybtn ">
+                      <div className="productData__btn">
+                        <div>
+                          <button
+                            className="add_btn"
+                            // onClick={addToBasket}
+                            onClick={() => {
+                              addToBasket(item);
+                            }}
+                            // onClick={() => {
+                            //   handleplus(item);
+                            // }}
+                          >
+                            +
+                          </button>
+                        </div>
+                        <div>
+                          <button
+                            className="minus_btn"
+                            // onClick={removeFromBasket}
+                            onClick={() => {
+                              removeFromBasket(item);
+                            }}
+                            // onClick={() => {
+                            //   handleminus(item);
+                            // }}
+                          >
+                            -
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -217,8 +219,8 @@ const Products = () => {
             Order Summary
           </div>
 
-          {cart &&
-            cart.map((item, index) => {
+          {basket &&
+            basket.map((item, index) => {
               return (
                 <div
                   key={index + item.name}
@@ -237,8 +239,9 @@ const Products = () => {
                       <div>
                         <button
                           className="add_btn"
+                          // onClick={addToBasket}
                           onClick={() => {
-                            handleplus(item);
+                            addToBasket(item);
                           }}
                         >
                           +
@@ -247,8 +250,9 @@ const Products = () => {
                       <div>
                         <button
                           className="minus_btn"
+                          // onClick={removeFromBasket}
                           onClick={() => {
-                            handleminus(item);
+                            removeFromBasket(item);
                           }}
                         >
                           -
@@ -273,6 +277,7 @@ const Products = () => {
             <Button variant="contained" onClick={handleClick1}>
               SAVE AND CHECKOUT
             </Button>
+
             <Button onClick={handleClose} variant="text">
               CANCEL
             </Button>
@@ -281,6 +286,6 @@ const Products = () => {
       </Modal>
     </div>
   );
-};
+}
 
 export default Products;

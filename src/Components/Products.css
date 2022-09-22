@@ -31,11 +31,11 @@
 
 .productData__name {
   padding-top: 0.8rem;
-  padding-left: 1rem;
+  /* padding-left: 1rem; */
 }
 
 .productData__price {
-  padding-left: 1rem;
+  /* padding-left: 1rem; */
   padding-top: 0.4rem;
 }
 
