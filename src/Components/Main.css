@@ -27,6 +27,7 @@
 
 .heading{
     color: white;
+    
 }
 
 .main_heading{
@@ -63,3 +64,28 @@ font-size: larger;
 font-weight: 500;
     background-color: rgb(64, 85, 175);
 }
+
+@media only screen and (max-width: 600px) {
+    
+    .heading_content{
+        margin-top: 3rem;
+        padding-top: 3rem ;
+        /* margin-left: 3.7rem; */
+         font-size:2rem;
+         font-weight:350;
+     
+     }
+
+     .heading_content1{
+        font-size:2rem;
+        font-weight:350;
+        /* margin-right: 4rem; */
+    }
+
+    .main_heading{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+  }

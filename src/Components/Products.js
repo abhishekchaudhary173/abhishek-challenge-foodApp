@@ -39,7 +39,7 @@ function Products({ name, price }) {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("/");
+    navigate("/main");
   }
 
   const navigate1 = useNavigate();

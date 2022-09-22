@@ -1,5 +1,6 @@
 import React from "react";
 import "./Main.css";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Main = () => {
@@ -8,16 +9,25 @@ const Main = () => {
   function handleClick() {
     navigate("/products");
   }
+
+  function handleClick1() {
+    navigate("/");
+  }
   return (
     <div>
       <div className="header__align">
+        <Link to="/" >
         <div className="img_logo">
           <img src="/Images/logo1.png" alt="logo" className="logo" />{" "}
         </div>
-        <div className="heading1">
+        </Link>
+        
+        <div className="heading1" onClick={handleClick1}>
           <h1 className="heading">Food's Restaurant</h1>
         </div>
+        
       </div>
+     
 
       <div className="main_heading">
         <div className="heading_content">
