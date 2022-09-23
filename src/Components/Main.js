@@ -11,12 +11,12 @@ const Main = () => {
   }
 
   function handleClick1() {
-    navigate("/");
+    navigate("/login");
   }
   return (
     <div>
       <div className="header__align">
-        <Link to="/" >
+        <Link to="/login" >
         <div className="img_logo">
           <img src="/Images/logo1.png" alt="logo" className="logo" />{" "}
         </div>

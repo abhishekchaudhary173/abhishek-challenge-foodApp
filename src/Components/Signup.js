@@ -55,7 +55,7 @@ const Signup = () => {
           <div className='password'>
           <input type="password" onChange={setPassword} placeholder=' Password*' />
           </div>
-          <Link to="/main">
+          <Link to="/login">
             <button className="login__signUpButton" type="submit" >
               Sign Up
             </button>

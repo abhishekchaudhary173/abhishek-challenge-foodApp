@@ -161,13 +161,11 @@ function Products({ name, price }) {
                         <div>
                           <button
                             className="add_btn"
-                            // onClick={addToBasket}
+              
                             onClick={() => {
                               addToBasket(item);
                             }}
-                            // onClick={() => {
-                            //   handleplus(item);
-                            // }}
+                            
                           >
                             +
                           </button>
@@ -175,13 +173,11 @@ function Products({ name, price }) {
                         <div>
                           <button
                             className="minus_btn"
-                            // onClick={removeFromBasket}
+                            
                             onClick={() => {
                               removeFromBasket(item);
                             }}
-                            // onClick={() => {
-                            //   handleminus(item);
-                            // }}
+                            
                           >
                             -
                           </button>

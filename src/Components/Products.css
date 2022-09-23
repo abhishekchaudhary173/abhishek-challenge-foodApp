@@ -21,7 +21,6 @@
   justify-content: center;
 }
 
-
 .productData__overlay {
   margin-right: 30px;
   margin-top: 30px;
@@ -88,4 +87,12 @@
 
 .minus_btn:hover {
     background-color: palevioletred;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+  .productData__card{
+  padding-left: 20px;
+  }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useStateValue } from "../StateProvider";
 function Login() {
   const [ dispatch] = useStateValue();
@@ -15,14 +15,23 @@ function Login() {
   const setUserName = (event) => {
     addUser(event);
   };
+
+  const navigate = useNavigate();
+
+  function handleClick() {
+    navigate("/");
+  }
+
   return (
     <div className="login">
       <Link to="/">
           <img src="/Images/logo.png" alt="logo" className="logo" />
           </Link>
-          <div className="logo" >
+          
+          <div className="logo" onClick={handleClick} >
           <h1 className="logo1">Food's Restaurant</h1>
         </div>
+       
       
       <div className="login__container">
         <h1 className="sign_in">Sign In</h1>
@@ -41,7 +50,7 @@ function Login() {
           By continuing, you agree to Food's restaurant Conditions of Use and Privacy
           Notice.
         </p>
-        <Link to="/signup">
+        <Link to="/">
         <button className="login__registerButton">
           Create your account
         </button>
