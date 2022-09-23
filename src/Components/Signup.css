@@ -1,0 +1,38 @@
+
+.login__signUpButton,.Cancel_btn{
+    color: white;
+    background: #4055AF;
+    border:1px solid;
+    margin-top: 10px;
+    border-color:#a88734 #9c7e31 #846a29;
+    border-radius: 2px;
+    width: 35%;
+    height: 30px;
+}
+
+.login__signUpButton{
+    margin-left: 20px ;
+}
+
+.Cancel_btn{
+    color: rgb(23, 10, 54);
+    border-color: darkgray;
+    background-color: #aeb8e0;
+    margin-left: 30px;
+}
+
+.first{
+    padding: 10px;
+}
+
+.last{
+    padding: 10px;
+}
+
+.email{
+    padding: 10px;
+}
+
+.password{
+    padding: 10px;
+}

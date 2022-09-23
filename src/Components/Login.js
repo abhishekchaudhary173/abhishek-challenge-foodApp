@@ -3,7 +3,7 @@ import "./Login.css";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../StateProvider";
 function Login() {
-  const [{}, dispatch] = useStateValue();
+  const [ dispatch] = useStateValue();
   const addUser = (event) => {
     dispatch({
       type: "ADD_USER",
@@ -11,13 +11,7 @@ function Login() {
     });
     console.log(event.target.value);
   };
-  const login = (event) => {
-    event.preventDefault();
-  };
-
-  const register = (event) => {
-    event.preventDefault();
-  };
+  
   const setUserName = (event) => {
     addUser(event);
   };
@@ -47,9 +41,11 @@ function Login() {
           By continuing, you agree to Food's restaurant Conditions of Use and Privacy
           Notice.
         </p>
-        <button className="login__registerButton" onClick={register}>
+        <Link to="/signup">
+        <button className="login__registerButton">
           Create your account
         </button>
+        </Link>
       </div>
     </div>
   );
